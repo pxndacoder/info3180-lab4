@@ -1,50 +1,47 @@
-{% extends 'base.html' %}
-
-{% block main %}
+{% extends 'base.html' %} {% block main %}
 <div class="container">
-    <h1 class="page-header mb-4">Uploaded Images</h1>
-    
-    {% include 'flash_messages.html' %}
+  <h1 class="page-header mb-4 text-center">Uploaded Images</h1>
 
-    {# Lab requirement: Display images in a Grid using CSS Grid or Flexbox #}
-    <div class="image-grid">
-        {% for image in images %}
-        <div class="grid-item">
-            <img src="{{ url_for('get_image', filename=image) }}" alt="Uploaded Image">
-            <p class="text-center mt-2 small text-muted">{{ image }}</p>
-        </div>
-        {% else %}
-        <div class="alert alert-info">No images uploaded yet.</div>
-        {% endfor %}
+  {% include 'flash_messages.html' %} {# Lab requirement: Display images in a
+  Grid using CSS Grid or Flexbox #}
+  <div class="image-grid">
+    {% for image in images %}
+    <div class="grid-item">
+      <img
+        src="{{ url_for('get_image', filename=image) }}"
+        alt="Uploaded Image" />
     </div>
+    {% else %}
+    <div class="alert alert-info w-100">No images uploaded yet.</div>
+    {% endfor %}
+  </div>
 </div>
 
 <style>
-/* CSS Grid Layout - Required for Marks */
-.image-grid {
+  .image-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
+    /* Adjusted to min 300px to better fill standard screen sizes */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px; /* Subtle gap matching Figure 1 */
     padding-bottom: 50px;
-}
+  }
 
-.grid-item {
-    background: #f8f9fa;
-    padding: 10px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  .grid-item {
+    overflow: hidden;
+    /* Simple hover effect to make it feel interactive */
     transition: transform 0.2s;
-}
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
-.grid-item:hover {
+  .grid-item:hover {
     transform: scale(1.02);
-}
+  }
 
-.grid-item img {
+  .grid-item img {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 10px;
-}
+    height: 300px; /* Maintains square/consistent height across the grid */
+    object-fit: cover; /* This makes different sized images fill the square perfectly */
+    display: block;
+  }
 </style>
 {% endblock %}
