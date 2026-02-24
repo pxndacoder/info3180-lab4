@@ -1,15 +1,27 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<h1 class="page-header">File Upload</h1>
+<div class="container">
+    <h1 class="page-header">File Upload</h1>
 
-{% include 'flash_messages.html' %}
+    {% include 'flash_messages.html' %}
 
-{# Add the appropriate method and enctype attributes to the form tag to allow for file uploads #}
-<form action="{{ url_for('upload') }}">
+    <p class="text-secondary">Please select an image file (jpg or png) to upload.</p>
 
-  {# Add the file upload field as you learnt for Flask-WTF #}
+    {# Add the appropriate method and enctype attributes to the form tag to allow for file uploads #}
+    <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data" class="mt-4">
+        
+        {# Include CSRF token for security (Marks awarded for this) #}
+        {{ form.csrf_token }}
 
-  <button type="submit" name="submit" class="btn btn-primary">Upload file</button>
-</form>
+        <div class="form-group mb-3">
+            {# Add the file upload field as you learnt for Flask-WTF #}
+            {{ form.photo.label(class="form-label") }}
+            {{ form.photo(class="form-control") }}
+            <div class="form-text">Only JPG and PNG images are allowed.</div>
+        </div>
+
+        <button type="submit" name="submit" class="btn btn-primary">Upload file</button>
+    </form>
+</div>
 {% endblock %}

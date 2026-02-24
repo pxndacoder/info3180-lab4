@@ -1,6 +1,27 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1 class="page-header">About</h1>
-<p>This webpage is about {{ name }}.</p>
+<div class="container">
+    <h1 class="page-header">About Lab 4</h1>
+    <p class="lead">Flask Authentication and File Management System</p>
+    
+    <p>
+        This application was developed as part of the <strong>INFO3180: Web Design and Programming II</strong> course. 
+        It demonstrates the implementation of secure user authentication using <em>Flask-Login</em> 
+        and persistent data storage with <em>PostgreSQL</em>.
+    </p>
+
+    <hr>
+
+    <h3>Key Features:</h3>
+    <ul>
+        <li>Secure User Login/Logout functionality.</li>
+        <li>Password hashing using Werkzeug security helpers.</li>
+        <li>Database migrations handled via Flask-Migrate.</li>
+        <li>Image upload system with secure filename handling.</li>
+        <li>Dynamic image gallery displayed using CSS Grid.</li>
+    </ul>
+
+    <p class="mt-4"><strong>Developer:</strong> pxndacoder</p>
+</div>
 {% endblock %}
